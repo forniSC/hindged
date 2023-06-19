@@ -63,11 +63,6 @@ public class DragWithTouchOrClick : MonoBehaviour
             m_dragging = false;
         }
 
-        if (m_dragging)
-        {
-            GetComponent<Rigidbody2D>().MovePosition(m_touchPosition);
-        }
-
         if (m_dragging && !m_wasDragging)
         {
             Stage.GetInstance().OnBlockStartMove(m_parent.gameObject);
@@ -78,5 +73,13 @@ public class DragWithTouchOrClick : MonoBehaviour
         }
 
         m_wasDragging = m_dragging;
+    }
+
+    private void FixedUpdate()
+    {
+        if (m_dragging)
+        {
+            GetComponent<Rigidbody2D>().MovePosition(m_touchPosition);
+        }
     }
 }
