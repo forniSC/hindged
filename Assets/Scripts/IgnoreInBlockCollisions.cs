@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IgnoreInBlockCollisions : MonoBehaviour
 {
-  public Collider2D[] m_subColliders;
+    Collider2D[] m_subColliders;
 
     void Awake()
     {
