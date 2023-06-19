@@ -7,6 +7,9 @@ public class DragWithTouchOrClick : MonoBehaviour
     private Vector2 m_touchStart;
     private Vector2 m_touchPosition;
     private bool m_dragging;
+    private bool m_wasDragging;
+
+    public BlockParent m_parent;
 
     // Start is called before the first frame update
     void Start()
@@ -64,5 +67,16 @@ public class DragWithTouchOrClick : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().MovePosition(m_touchPosition);
         }
+
+        if (m_dragging && !m_wasDragging)
+        {
+            Stage.GetInstance().OnBlockStartMove(m_parent.gameObject);
+        }
+        else if (!m_dragging && m_wasDragging)
+        {
+            Stage.GetInstance().OnBlockEndMove(m_parent.gameObject);
+        }
+
+        m_wasDragging = m_dragging;
     }
 }
