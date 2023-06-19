@@ -6,13 +6,16 @@ public class IgnoreInBlockCollisions : MonoBehaviour
 {
   public Collider2D[] m_subColliders;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        int limit = m_subColliders.Length - 1;
-        for (int i=0; i<limit; ++i)
+        m_subColliders = GetComponentsInChildren<Collider2D>();
+        for (int i=0; i < m_subColliders.Length; ++i)
         {
-            Physics2D.IgnoreCollision(m_subColliders[i], m_subColliders[i+1]);
+            for (int j = 0; j < m_subColliders.Length; ++j)
+            {
+                if (i == j) continue;
+                Physics2D.IgnoreCollision(m_subColliders[i], m_subColliders[j]);
+            }
         }
     }
 
