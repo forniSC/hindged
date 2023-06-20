@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8468b76851674771b50cc85b571cfc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_objectsParent: {fileID: 0}
+  m_objectsParent: {fileID: 298600949}
   m_blockPrefab:
   - {fileID: 1094649378379502850, guid: cf18cfbb6a24dc74f9e375f70fe8eb9f, type: 3}
   - {fileID: 1094649378379502850, guid: 7d31085c90a164e5aaed7b9f56761362, type: 3}

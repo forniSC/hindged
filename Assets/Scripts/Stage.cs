@@ -59,12 +59,14 @@ public class Stage : MonoBehaviour
         m_waitingBlockParent = blockParent;
     }
 
-    public void RecalculateInteractions()
+    public bool RecalculateInteractions()
     {
         int minX = int.MaxValue;
         int maxX = int.MinValue;
         int minY = int.MaxValue;
         int maxY = int.MinValue;
+        Dictionary<BlockParent, Tuple<int, int>> animalPositions = new Dictionary<BlockParent, Tuple<int, int>>();
+        Dictionary<BlockParent, int> animalSizes = new Dictionary<BlockParent, int>();
         BlockParent[] parents = GetComponentsInChildren<BlockParent>();
         foreach (BlockParent parent in parents)
         {
@@ -93,12 +95,47 @@ public class Stage : MonoBehaviour
                         Vector3 pos = t.position;
                         int x = Mathf.RoundToInt(pos.x) - minX;
                         int y = Mathf.RoundToInt(pos.y) - minY;
-                        grid[x, y] = parent;
+                        if (grid[x, y] == null)
+                        {
+                            grid[x, y] = parent;
+
+                            int size = 1;
+                            if (animalSizes.ContainsKey(parent))
+                            {
+                                size = animalSizes[parent] + 1;
+                            }
+                            animalSizes[parent] = size;
+                            animalPositions[parent] = new Tuple<int, int>(x, y);
+                        }
+                        else if (grid[x, y] != parent)
+                        {
+                            Debug.Log("Overlapping animals!");
+                            return false;
+                        }
                     }
                 }
             }
-            /*
-            for (int j = maxY - minY - 1; j >= 0; --j)
+
+            foreach (BlockParent parent in parents)
+            {
+                if (!animalPositions.ContainsKey(parent))
+                {
+                    Debug.Log("Animal not found!");
+                    return false;
+                }
+                else
+                {
+                    Tuple<int, int> pos = animalPositions[parent];
+                    bool[,] visited = new bool[maxX - minX, maxY - minY];
+                    int count = Visit(pos.Item1, pos.Item2, visited, grid, parent);
+                    if (count != animalSizes[parent])
+                    {
+                        Debug.Log("Animal is split to pieces!");
+                        return false;
+                    }
+                }
+            }
+            /*for (int j = maxY - minY - 1; j >= 0; --j)
             {
                 String s = "";
                 {
@@ -115,5 +152,19 @@ public class Stage : MonoBehaviour
                 Debug.Log(s);
             }*/
         }
+        return true;
+    }
+
+    private int Visit(int x, int y, bool[,] visited, BlockParent[,] grid, BlockParent animal)
+    {
+        if (visited[x, y]) return 0;
+
+        int size = 1;
+        visited[x, y] = true;
+        if (x > 0 && grid[x - 1, y] == animal) size += Visit(x - 1, y, visited, grid, animal);
+        if (y > 0 && grid[x, y - 1] == animal) size += Visit(x, y - 1, visited, grid, animal);
+        if (x < grid.GetLength(0) - 1 && grid[x + 1, y] == animal) size += Visit(x + 1, y, visited, grid, animal);
+        if (y < grid.GetLength(1) - 1 && grid[x, y + 1] == animal) size += Visit(x, y + 1, visited, grid, animal);
+        return size;
     }
 }
