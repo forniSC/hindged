@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Converger : MonoBehaviour
 {
-    float PositionTime = 0.04f;
-    float AngleTime = 0.04f;
-    float Iterations = 4;
+    float PositionTime = 0.1f;
+    float AngleTime = 0.1f;
+    float Iterations = 3;
     float m_totalTime;
 
     Vector2 m_targetPos;
