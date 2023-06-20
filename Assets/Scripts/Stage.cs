@@ -11,6 +11,9 @@ public class Stage : MonoBehaviour
     BlockParent m_waitingBlockParent = null;
     int m_coziness = 0;
 
+    public float FMaxForce = 50.0f;
+    public float FMaxTorque = 10.0f;
+
     public int Coziness { get { return m_coziness; } }
 
     // Start is called before the first frame update

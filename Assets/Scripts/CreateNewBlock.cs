@@ -36,15 +36,15 @@ public class CreateNewBlock : MonoBehaviour
         foreach (Rigidbody2D p in rigidBodies)
         {
             p.interpolation = RigidbodyInterpolation2D.Interpolate;
-            p.drag = 100;
-            p.angularDrag = 100;
+            p.drag = 10;
+            p.angularDrag = 10;
         }
 
         FrictionJoint2D[] frictionJoints = GetComponentsInChildren<FrictionJoint2D>();
         foreach (FrictionJoint2D p in frictionJoints)
         {
-            p.maxForce = 1000;
-            p.maxTorque = 1000;
+            p.maxForce = Stage.GetInstance().FMaxForce;
+            p.maxTorque = Stage.GetInstance().FMaxTorque;
         }
 
     }
