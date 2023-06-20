@@ -37,8 +37,8 @@ public class CreateNewBlock : MonoBehaviour
         foreach (Rigidbody2D p in rigidBodies)
         {
             p.interpolation = RigidbodyInterpolation2D.Interpolate;
-            p.drag = 3;
-            p.angularDrag = 3;
+            p.drag = 100;
+            p.angularDrag = 100;
         }
 
         FrictionJoint2D[] frictionJoints = GetComponentsInChildren<FrictionJoint2D>();

@@ -695,6 +695,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubBlockSemicircle (Hinge)
       objectReference: {fileID: 0}
+    - target: {fileID: 425312424550109757, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1347828269150765688, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
       propertyPath: m_Color.b
       value: 0

@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Converger : MonoBehaviour
 {
-    float PositionTime = 0.1f;
-    float AngleTime = 0.1f;
+    float PositionTime = 0.05f;
+    float AngleTime = 0.05f;
     float Iterations = 3;
     float m_totalTime;
 
@@ -17,6 +17,7 @@ public class Converger : MonoBehaviour
     float m_time;
     bool m_isConverging = false;
     bool m_wasAngle = false;
+    bool m_wasConverging = false;
 
     public Vector2 TargetPos { get { return m_targetPos; } }
     public float TargetAngle { get { return m_targetAngle; } }
@@ -76,7 +77,15 @@ public class Converger : MonoBehaviour
             m_wasAngle = isAngle;
         }
 
+        if (!m_isConverging && m_wasConverging)
+        {
+            Vector2 rigidBodyPosition = GetComponent<Rigidbody2D>().position;
+            m_targetPos.x = Mathf.Round(rigidBodyPosition.x);
+            m_targetPos.y = Mathf.Round(rigidBodyPosition.y);
+        }
+
         m_time += Time.fixedDeltaTime;
+        m_wasConverging = m_isConverging;
     }
 
     public void Converge()
