@@ -72,6 +72,8 @@ public class Stage : MonoBehaviour
 
     public bool RecalculateInteractions()
     {
+        int coziness = 0;
+
         int minX = int.MaxValue;
         int maxX = int.MinValue;
         int minY = int.MaxValue;
@@ -144,6 +146,7 @@ public class Stage : MonoBehaviour
                         Debug.Log("Animal is split to pieces!");
                         return false;
                     }
+                    coziness += count; // TODO: Non-linear formula.
                 }
             }
             /*for (int j = maxY - minY - 1; j >= 0; --j)
@@ -163,6 +166,7 @@ public class Stage : MonoBehaviour
                 Debug.Log(s);
             }*/
         }
+        m_coziness = coziness;
         return true;
     }
 
@@ -170,12 +174,23 @@ public class Stage : MonoBehaviour
     {
         if (visited[x, y]) return 0;
 
-        int size = 1;
         visited[x, y] = true;
-        if (x > 0 && grid[x - 1, y] == animal) size += Visit(x - 1, y, visited, grid, animal);
-        if (y > 0 && grid[x, y - 1] == animal) size += Visit(x, y - 1, visited, grid, animal);
-        if (x < grid.GetLength(0) - 1 && grid[x + 1, y] == animal) size += Visit(x + 1, y, visited, grid, animal);
-        if (y < grid.GetLength(1) - 1 && grid[x, y + 1] == animal) size += Visit(x, y + 1, visited, grid, animal);
+
+        BlockParent neighbor = grid[x, y];
+        if (neighbor != animal)
+        {
+            if (neighbor != null)
+            {
+                // Decrease coziness
+            }
+            return 0;
+        }
+
+        int size = 1;
+        if (x > 0) size += Visit(x - 1, y, visited, grid, animal);
+        if (y > 0) size += Visit(x, y - 1, visited, grid, animal);
+        if (x < grid.GetLength(0) - 1) size += Visit(x + 1, y, visited, grid, animal);
+        if (y < grid.GetLength(1) - 1) size += Visit(x, y + 1, visited, grid, animal);
         return size;
     }
 }
