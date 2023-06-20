@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Converger : MonoBehaviour
 {
-    public float PositionTime = 0.1f;
-    public float AngleTime = 0.1f;
+    float PositionTime = 0.05f;
+    float AngleTime = 0.05f;
+    float Iterations = 3;
     float m_totalTime;
 
     Vector3 m_targetPos;
@@ -24,7 +25,7 @@ public class Converger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_totalTime = PositionTime + AngleTime;
+        m_totalTime = PositionTime * Iterations + AngleTime * Iterations;
     }
 
     void FixedUpdate()
@@ -34,9 +35,11 @@ public class Converger : MonoBehaviour
 
         if (m_isConverging)
         {
-            bool isAngle = m_time < AngleTime;
+            bool isAngle = m_time < AngleTime * Iterations;
             if (isAngle)
             {
+                float t = m_time / AngleTime;
+                if (t > 1) t = 1;
                 float lerped = Mathf.LerpAngle(m_startAngle, m_targetAngle, m_time / AngleTime);
                 GetComponent<Rigidbody2D>().MoveRotation(lerped);
             }
@@ -55,15 +58,20 @@ public class Converger : MonoBehaviour
                 if (m_time >= m_totalTime)
                 {
                     m_isConverging = false;
-                    GetComponent<Rigidbody2D>().MovePosition(m_targetPos);
+                }
+
+                float posTime = (m_time - AngleTime * Iterations);
+                float t = posTime / PositionTime;
+                if (t > 1) t = 1;
+                if (t < 1)
+                {
+                    Vector2 lerped = Vector2.Lerp(m_startPos, m_targetPos, t);
+                    GetComponent<Rigidbody2D>().MovePosition(lerped);
                 }
                 else
                 {
-                    Vector2 lerped = Vector2.Lerp(m_startPos, m_targetPos, (m_time - AngleTime) / PositionTime);
-                    GetComponent<Rigidbody2D>().MovePosition(lerped);
+                    GetComponent<Rigidbody2D>().MovePosition(m_targetPos);
                 }
-
-                // TODO keep moving and rotating to target for extra time
             }
 
             m_wasAngle = isAngle;
