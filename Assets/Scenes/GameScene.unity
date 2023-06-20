@@ -123,6 +123,57 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &127836273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 127836275}
+  - component: {fileID: 127836274}
+  m_Layer: 0
+  m_Name: Animal Queue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &127836274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127836273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c13993bf3d747e9b09639b2429641e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_list:
+  - {fileID: 1094649378379502850, guid: 7d31085c90a164e5aaed7b9f56761362, type: 3}
+  - {fileID: 1094649378379502850, guid: cf18cfbb6a24dc74f9e375f70fe8eb9f, type: 3}
+  - {fileID: 1094649378379502850, guid: 7d31085c90a164e5aaed7b9f56761362, type: 3}
+  - {fileID: 1094649378379502850, guid: 7d31085c90a164e5aaed7b9f56761362, type: 3}
+  - {fileID: 1094649378379502850, guid: cf18cfbb6a24dc74f9e375f70fe8eb9f, type: 3}
+  - {fileID: 1094649378379502850, guid: cf18cfbb6a24dc74f9e375f70fe8eb9f, type: 3}
+--- !u!4 &127836275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127836273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &266248356
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +271,7 @@ RectTransform:
   - {fileID: 1201790556}
   - {fileID: 1345729023}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -390,9 +441,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f824ef6a6d43a4919aae21dbda19308f, type: 3}
+  m_Script: {fileID: 11500000, guid: 74e038e49749749d2ac0513431fc7420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDistanceForTap: 40
+  maxDurationForTap: 0.4
+  useMouse: 1
+  mouseScrollSpeed: 0.85
+  controlCamera: 1
+  cam: {fileID: 519420031}
+  ignoreUI: 1
+  useBounds: 0
+  boundMinX: -150
+  boundMaxX: 150
+  boundMinY: -150
+  boundMaxY: 150
 --- !u!1 &665201504
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +522,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1153295853
 GameObject:
