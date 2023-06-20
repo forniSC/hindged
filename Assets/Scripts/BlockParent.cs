@@ -16,6 +16,15 @@ public class BlockParent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    public Converger[] ConvergeToGrid()
+    {
+        Converger[] subConvergers = GetComponentsInChildren<Converger>();
+        foreach (Converger c in subConvergers)
+        {
+            c.Converge();
+        }
+        return subConvergers;
     }
 }

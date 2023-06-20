@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 425312424550109757}
   - component: {fileID: 7659615097721310039}
   - component: {fileID: 8910390623736794560}
+  - component: {fileID: 3632063388918008979}
   m_Layer: 0
   m_Name: SubBlockSemicircle
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   - {fileID: 4973611178669466646}
   - {fileID: 964039076917499930}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8291247646464031754
 Rigidbody2D:
@@ -76,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb4f28a6133140d382b7231a4d71f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_parent: {fileID: 0}
 --- !u!256 &7659615097721310039
 FrictionJoint2D:
   m_ObjectHideFlags: 0
@@ -92,7 +94,7 @@ FrictionJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0.00000035762787, y: 0.9999999}
   m_MaxForce: 2.5
   m_MaxTorque: 2.5
 --- !u!58 &8910390623736794560
@@ -130,6 +132,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &3632063388918008979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294418734566673753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cc685e29e6b4dcbb8f22eb809d7505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3602063761442948090
 GameObject:
   m_ObjectHideFlags: 0
