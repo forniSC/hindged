@@ -23,5 +23,9 @@ public class ChangeStatic : MonoBehaviour
         {
             b.bodyType = isStatic ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
         }
+        if (isStatic)
+        {
+            Stage.GetInstance().RecalculateInteractions();
+        }
     }
 }
