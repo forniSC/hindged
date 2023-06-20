@@ -26,8 +26,13 @@ public class CreateNewBlock : MonoBehaviour
         if (prefab == null)
             return;
 
-        GameObject go = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity, m_objectsParent);
+        GameObject go = Instantiate(prefab, GetEntryPoint(), Quaternion.identity, m_objectsParent);
         ApplyRigidbodySettings(go);
+    }
+
+    Vector3 GetEntryPoint()
+    {
+        return Level.GetInstance().GetEntryPoint();
     }
 
     void ApplyRigidbodySettings(GameObject go)

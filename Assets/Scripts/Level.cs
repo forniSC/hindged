@@ -22,4 +22,10 @@ public class Level : MonoBehaviour
     {
         
     }
+
+    public Vector3 GetEntryPoint()
+    {
+        EntryPoint p = GetComponentInChildren<EntryPoint>();
+        return p.transform.position;
+    }
 }
