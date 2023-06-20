@@ -5,7 +5,6 @@ using UnityEngine;
 public class CreateNewBlock : MonoBehaviour
 {
     public Transform m_objectsParent;
-    public GameObject[] m_blockPrefab;
 
     private Vector2 m_touchPosition;
 

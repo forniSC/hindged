@@ -9,6 +9,9 @@ public class Stage : MonoBehaviour
 
     Converger[] m_waitingConvergers = new Converger[0];
     BlockParent m_waitingBlockParent = null;
+    int m_coziness = 0;
+
+    public int Coziness { get { return m_coziness; } }
 
     // Start is called before the first frame update
     void Start()
