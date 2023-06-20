@@ -9,6 +9,7 @@ public class DragWithTouchOrClick : MonoBehaviour
     private bool m_dragging;
     private bool m_wasDragging;
 
+    [HideInInspector]
     public BlockParent m_parent;
 
     // Start is called before the first frame update

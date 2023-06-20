@@ -272,15 +272,15 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 294418734566673753, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2471235335354202704}
+      addedObject: {fileID: 8349786200631282905}
   m_SourcePrefab: {fileID: 100100000, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
 --- !u!1 &1013780181388397363 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 294418734566673753, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
   m_PrefabInstance: {fileID: 721798543067416170}
   m_PrefabAsset: {fileID: 0}
---- !u!255 &2471235335354202704
-FixedJoint2D:
+--- !u!254 &8349786200631282905
+RelativeJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -293,11 +293,12 @@ FixedJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 0
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.00000007549787, y: -0.9999999}
-  m_DampingRatio: 0
-  m_Frequency: 0
+  m_MaxForce: 100000
+  m_MaxTorque: 100000
+  m_CorrectionScale: 1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: 0.000000075497894, y: 1.0000001}
+  m_AngularOffset: 0
 --- !u!4 &4513839259537864094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3792091460235097076, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
@@ -385,7 +386,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 294418734566673753, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7429639572004700528}
+      addedObject: {fileID: 1558479735041579728}
   m_SourcePrefab: {fileID: 100100000, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
 --- !u!4 &565528458636427196 stripped
 Transform:
@@ -397,8 +398,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 294418734566673753, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
   m_PrefabInstance: {fileID: 3709028978892147784}
   m_PrefabAsset: {fileID: 0}
---- !u!255 &7429639572004700528
-FixedJoint2D:
+--- !u!254 &1558479735041579728
+RelativeJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -411,11 +412,12 @@ FixedJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 0
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: -1}
-  m_DampingRatio: 0
-  m_Frequency: 0
+  m_MaxForce: 100000
+  m_MaxTorque: 100000
+  m_CorrectionScale: 1
+  m_AutoConfigureOffset: 1
+  m_LinearOffset: {x: 0, y: 1}
+  m_AngularOffset: 0
 --- !u!1001 &4242939632086374309
 PrefabInstance:
   m_ObjectHideFlags: 0
