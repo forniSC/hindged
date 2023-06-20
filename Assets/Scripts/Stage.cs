@@ -59,12 +59,13 @@ public class Stage : MonoBehaviour
         m_waitingBlockParent = blockParent;
     }
 
-    public void RecalculateInteractions()
+    public bool RecalculateInteractions()
     {
         int minX = int.MaxValue;
         int maxX = int.MinValue;
         int minY = int.MaxValue;
         int maxY = int.MinValue;
+        Dictionary<BlockParent, Tuple<int, int>> animals = new Dictionary<BlockParent, Tuple<int, int>>();
         BlockParent[] parents = GetComponentsInChildren<BlockParent>();
         foreach (BlockParent parent in parents)
         {
@@ -94,7 +95,20 @@ public class Stage : MonoBehaviour
                         int x = Mathf.RoundToInt(pos.x) - minX;
                         int y = Mathf.RoundToInt(pos.y) - minY;
                         grid[x, y] = parent;
+                        animals[parent] = new Tuple<int, int>(x, y);
                     }
+                }
+            }
+
+            foreach (BlockParent parent in parents)
+            {
+                if (!animals.ContainsKey(parent))
+                {
+                    return false;
+                }
+                else
+                {
+                    
                 }
             }
             /*
@@ -116,4 +130,5 @@ public class Stage : MonoBehaviour
             }*/
         }
     }
+    return true;
 }
