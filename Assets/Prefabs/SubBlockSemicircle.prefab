@@ -94,7 +94,7 @@ FrictionJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.00000035762787, y: 0.9999999}
+  m_ConnectedAnchor: {x: 0, y: 1}
   m_MaxForce: 2.5
   m_MaxTorque: 2.5
 --- !u!58 &8910390623736794560
@@ -131,7 +131,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
 --- !u!114 &3632063388918008979
 MonoBehaviour:
   m_ObjectHideFlags: 0
