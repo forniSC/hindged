@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class Converger : MonoBehaviour
 {
-    float PositionTime = 0.05f;
-    float AngleTime = 0.05f;
-    float Iterations = 3;
+    float PositionTime = 0.04f;
+    float AngleTime = 0.04f;
+    float Iterations = 4;
     float m_totalTime;
 
-    Vector3 m_targetPos;
-    Vector3 m_startPos;
+    Vector2 m_targetPos;
+    Vector2 m_startPos;
     float m_startAngle;
     float m_targetAngle;
     float m_time;
     bool m_isConverging = false;
     bool m_wasAngle = false;
 
-    public Vector3 TargetPos { get { return m_targetPos; } }
+    public Vector2 TargetPos { get { return m_targetPos; } }
     public float TargetAngle { get { return m_targetAngle; } }
     public bool IsConverging { get { return m_isConverging; } }
 
@@ -50,7 +50,6 @@ public class Converger : MonoBehaviour
                     m_startPos = transform.position;
                     m_targetPos.x = Mathf.Round(m_startPos.x);
                     m_targetPos.y = Mathf.Round(m_startPos.y);
-                    m_targetPos.z = m_startPos.y;
                 }
 
                 GetComponent<Rigidbody2D>().MoveRotation(m_targetAngle);
