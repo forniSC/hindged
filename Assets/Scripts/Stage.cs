@@ -28,18 +28,23 @@ public class Stage : MonoBehaviour
         if (m_waitingConvergers.Length > 0)
         {
             bool isWaiting = false;
+            bool isFailed = false;
             foreach (Converger c in m_waitingConvergers)
             {
                 isWaiting |= c.IsConverging;
+                isFailed |= c.IsFailed;
             }
             if (!isWaiting)
             {
-                // Fix the intepolation
-                foreach (Converger c in m_waitingConvergers)
+                if (!isFailed)
                 {
-                    c.gameObject.transform.SetPositionAndRotation(c.TargetPos, Quaternion.Euler(0, 0, c.TargetAngle));
+                    // Fix the intepolation
+                    foreach (Converger c in m_waitingConvergers)
+                    {
+                        c.gameObject.transform.SetPositionAndRotation(c.TargetPos, Quaternion.Euler(0, 0, c.TargetAngle));
+                    }
+                    m_waitingBlockParent.GetComponent<ChangeStatic>().setStatic(true);
                 }
-                m_waitingBlockParent.GetComponent<ChangeStatic>().setStatic(true);
 
                 m_waitingConvergers = new Converger[0];
                 m_waitingBlockParent = null;
