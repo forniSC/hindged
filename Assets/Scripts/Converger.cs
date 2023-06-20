@@ -14,12 +14,20 @@ public class Converger : MonoBehaviour
     float m_startAngle;
     float m_targetAngle;
     float m_time;
-    bool m_isConverging = false;
-    bool m_wasAngle = false;
 
     public Vector3 TargetPos { get { return m_targetPos; } }
     public float TargetAngle { get { return m_targetAngle; } }
-    public bool IsConverging { get { return m_isConverging; } }
+    public bool IsConverging { get { return m_state != State.FINISHED; } }
+
+    enum State
+    {
+        INIT,
+        ROTATION,
+        POSITION,
+        FINISHED
+    }
+
+    State m_state = State.FINISHED;
 
     // Start is called before the first frame update
     void Start()
@@ -27,46 +35,92 @@ public class Converger : MonoBehaviour
         m_totalTime = PositionTime + AngleTime;
     }
 
+    void ChangeState(State state)
+    {
+        if (state == State.INIT)
+        {
+            m_startAngle = transform.eulerAngles.z;
+
+            if (m_targetAngle < 0) m_startAngle += 360.0f;
+
+            if (m_startAngle < 45)
+                m_targetAngle = 0;
+            else if (m_startAngle >= 315)
+                m_targetAngle = 0;
+            else if (m_startAngle >= 45 && m_startAngle < 135)
+                m_targetAngle = 90;
+            else if (m_startAngle >= 135 && m_startAngle < 225)
+                m_targetAngle = 180;
+            else if (m_startAngle >= 225 && m_startAngle < 315)
+                m_targetAngle = 270;
+        }
+        else if (state == State.ROTATION)
+        {
+        }
+        else if (state == State.POSITION)
+        {
+            gameObject.transform.SetPositionAndRotation(gameObject.transform.position, Quaternion.Euler(0, 0, TargetAngle));
+            m_targetPos.x = Mathf.Round(gameObject.transform.position.x);
+            m_targetPos.y = Mathf.Round(gameObject.transform.position.y);
+        }
+        else if (state == State.FINISHED)
+        {
+            gameObject.transform.SetPositionAndRotation(m_targetPos, Quaternion.Euler(0, 0, TargetAngle));
+        }
+        m_state = state;
+    }
+
+    private void Update()
+    {
+        // control converge state
+        if (m_state == State.INIT)
+        {
+            ChangeState(State.ROTATION);
+        }
+        else if (m_state == State.ROTATION)
+        {
+            float currentAngle = gameObject.transform.eulerAngles.z;
+            float deltaAngle = Mathf.DeltaAngle(currentAngle, m_targetAngle);
+
+            if (deltaAngle < 5)
+            {
+                ChangeState(State.POSITION);
+            }
+        }
+        else if (m_state == State.POSITION)
+        {
+            float deltaPosition = Vector2.Distance(gameObject.transform.position, m_targetPos);
+            if (deltaPosition < 0.05f)
+            {
+                ChangeState(State.FINISHED);
+            }
+        }
+    }
+
     void FixedUpdate()
     {
-        // TODO keep converging until reached close enough rotation, fixed angle step
-        // TODO do not lock position before fixing rotation of object (not just rigidbody)
+        // keep converging until reached close enough rotation, fixed angle step
 
-        if (m_isConverging)
+        if (m_state == State.ROTATION)
         {
-            bool isAngle = m_time < AngleTime;
-            if (isAngle)
+            float currentAngle = GetComponent<Rigidbody2D>().rotation;
+            float deltaAngle = Mathf.DeltaAngle(currentAngle, m_targetAngle);
+            float targetAngle = Mathf.LerpAngle(currentAngle, m_targetAngle, 0.1f);
+
+            if (Mathf.Abs(deltaAngle) < 2) targetAngle = m_targetAngle;
+
+            GetComponent<Rigidbody2D>().MoveRotation(targetAngle);
+        }
+        else if (m_state == State.POSITION)
+        {
+            Vector2 target = m_targetPos;
+            Vector2 diff = target - GetComponent<Rigidbody2D>().position;
+            if (diff.magnitude > 0.1f)
             {
-                float lerped = Mathf.LerpAngle(m_startAngle, m_targetAngle, m_time / AngleTime);
-                GetComponent<Rigidbody2D>().MoveRotation(lerped);
+                diff = diff.normalized * 0.1f;
+                target = GetComponent<Rigidbody2D>().position + diff;
             }
-            else
-            {
-                if (m_wasAngle)
-                {
-                    m_startPos = transform.position;
-                    m_targetPos.x = Mathf.Round(m_startPos.x);
-                    m_targetPos.y = Mathf.Round(m_startPos.y);
-                    m_targetPos.z = m_startPos.y;
-                }
-
-                GetComponent<Rigidbody2D>().MoveRotation(m_targetAngle);
-
-                if (m_time >= m_totalTime)
-                {
-                    m_isConverging = false;
-                    GetComponent<Rigidbody2D>().MovePosition(m_targetPos);
-                }
-                else
-                {
-                    Vector2 lerped = Vector2.Lerp(m_startPos, m_targetPos, (m_time - AngleTime) / PositionTime);
-                    GetComponent<Rigidbody2D>().MovePosition(lerped);
-                }
-
-                // TODO keep moving and rotating to target for extra time
-            }
-
-            m_wasAngle = isAngle;
+            GetComponent<Rigidbody2D>().MovePosition(target);
         }
 
         m_time += Time.fixedDeltaTime;
@@ -74,22 +128,7 @@ public class Converger : MonoBehaviour
 
     public void Converge()
     {
-        m_startAngle = transform.eulerAngles.z;
-
-        if (m_targetAngle < 0) m_startAngle += 360.0f;
-
-        if (m_startAngle < 45)
-            m_targetAngle = 0;
-        else if (m_startAngle >= 315)
-            m_targetAngle = 0;
-        else if (m_startAngle >= 45 && m_startAngle < 135)
-            m_targetAngle = 90;
-        else if (m_startAngle >= 135 && m_startAngle < 225)
-            m_targetAngle = 180;
-        else if (m_startAngle >= 225 && m_startAngle < 315)
-            m_targetAngle = 270;
-
-        m_isConverging = true;
+        ChangeState(State.INIT);
         m_time = 0.0f;
     }
 }

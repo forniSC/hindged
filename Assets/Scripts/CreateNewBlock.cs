@@ -60,21 +60,3 @@ public class CreateNewBlock : MonoBehaviour
       }
     }
 }
-
-public class BlockShapeCreator
-{
-    private int m_gridWidth;
-    private int m_gridHeight;
-
-    public bool isComplete
-    {
-        get { return false; }
-    }
-
-    public BlockShapeCreator(int width, int height)
-    {
-        m_gridWidth = width;
-        m_gridHeight = height;
-    }
-
-}
