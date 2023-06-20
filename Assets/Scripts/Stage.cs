@@ -95,14 +95,23 @@ public class Stage : MonoBehaviour
                         Vector3 pos = t.position;
                         int x = Mathf.RoundToInt(pos.x) - minX;
                         int y = Mathf.RoundToInt(pos.y) - minY;
-                        grid[x, y] = parent;
-                        int size = 1;
-                        if (animalSizes.ContainsKey(parent))
+                        if (grid[x, y] == null)
                         {
-                            size = animalSizes[parent] + 1;
+                            grid[x, y] = parent;
+
+                            int size = 1;
+                            if (animalSizes.ContainsKey(parent))
+                            {
+                                size = animalSizes[parent] + 1;
+                            }
+                            animalSizes[parent] = size;
+                            animalPositions[parent] = new Tuple<int, int>(x, y);
                         }
-                        animalSizes[parent] = size;
-                        animalPositions[parent] = new Tuple<int, int>(x, y);
+                        else if (grid[x, y] != parent)
+                        {
+                            Debug.Log("Overlapping animals!");
+                            return false;
+                        }
                     }
                 }
             }
