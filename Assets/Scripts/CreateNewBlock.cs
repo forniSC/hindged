@@ -55,7 +55,7 @@ public class CreateNewBlock : MonoBehaviour
 
       if (create)
       {
-            int rndBlock = Random.Range(0, m_blockPrefab.Length - 1);
+            int rndBlock = Random.Range(0, m_blockPrefab.Length);
             GameObject go = Instantiate(m_blockPrefab[rndBlock], new Vector3(0, -2.6f, 0), Quaternion.identity, m_objectsParent);
       }
     }
