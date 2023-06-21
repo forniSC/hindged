@@ -10,6 +10,7 @@ public class Stage : MonoBehaviour
     Converger[] m_waitingConvergers = new Converger[0];
     BlockParent m_waitingBlockParent = null;
     int m_coziness = 0;
+    int m_penalty;
 
     public float FMaxForce = 50.0f;
     public float FMaxTorque = 10.0f;
@@ -72,6 +73,7 @@ public class Stage : MonoBehaviour
 
     public bool RecalculateInteractions()
     {
+        m_penalty = 0;
         int coziness = 0;
 
         int minX = int.MaxValue;
@@ -146,7 +148,7 @@ public class Stage : MonoBehaviour
                         Debug.Log("Animal is split to pieces!");
                         return false;
                     }
-                    coziness += count; // TODO: Non-linear formula.
+                    coziness += count * (count + 1) / 2;
                 }
             }
             /*for (int j = maxY - minY - 1; j >= 0; --j)
@@ -166,7 +168,7 @@ public class Stage : MonoBehaviour
                 Debug.Log(s);
             }*/
         }
-        m_coziness = coziness;
+        m_coziness = coziness - m_penalty;
         return true;
     }
 
@@ -181,7 +183,10 @@ public class Stage : MonoBehaviour
         {
             if (neighbor != null)
             {
-                // Decrease coziness
+                if (neighbor.ToString() == animal.ToString())
+                {
+                    ++m_penalty;
+                }
             }
             return 0;
         }
