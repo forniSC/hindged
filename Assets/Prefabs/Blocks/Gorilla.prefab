@@ -652,10 +652,10 @@ HingeJoint2D:
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 360
+    m_LowerAngle: -180
+    m_UpperAngle: 0
 --- !u!4 &4358015801011789553 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3792091460235097076, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
@@ -791,13 +791,18 @@ RelativeJoint2D:
   m_BreakAction: 0
   m_MaxForce: 100000
   m_MaxTorque: 100000
-  m_CorrectionScale: 1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0, y: 1}
   m_AngularOffset: 0
 --- !u!4 &4513839259537864094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3792091460235097076, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
+  m_PrefabInstance: {fileID: 721798543067416170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &8724662413513046624 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8291247646464031754, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
   m_PrefabInstance: {fileID: 721798543067416170}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &728956976736575717
@@ -919,15 +924,15 @@ RelativeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 8920103164561723663}
+  m_ConnectedRigidBody: {fileID: 7084433359666032728}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 0
   m_MaxForce: 100000
   m_MaxTorque: 100000
-  m_CorrectionScale: 1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0, y: 2}
+  m_LinearOffset: {x: 0, y: 1}
   m_AngularOffset: 0
 --- !u!4 &4521035225047225105 stripped
 Transform:
@@ -1059,13 +1064,18 @@ RelativeJoint2D:
   m_BreakAction: 0
   m_MaxForce: 100000
   m_MaxTorque: 100000
-  m_CorrectionScale: 1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0, y: 1}
   m_AngularOffset: 0
 --- !u!4 &2729370774971416486 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3792091460235097076, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
+  m_PrefabInstance: {fileID: 1243164287428070482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &7084433359666032728 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8291247646464031754, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
   m_PrefabInstance: {fileID: 1243164287428070482}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1367504875052013132
@@ -1195,7 +1205,7 @@ RelativeJoint2D:
   m_BreakAction: 0
   m_MaxForce: 100000
   m_MaxTorque: 100000
-  m_CorrectionScale: 1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0, y: 1}
   m_AngularOffset: 0
@@ -1377,7 +1387,7 @@ RelativeJoint2D:
   m_BreakAction: 0
   m_MaxForce: 100000
   m_MaxTorque: 100000
-  m_CorrectionScale: 1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 1, y: 1}
   m_AngularOffset: 0
@@ -1541,7 +1551,7 @@ RelativeJoint2D:
   m_BreakAction: 0
   m_MaxForce: 100000
   m_MaxTorque: 100000
-  m_CorrectionScale: 1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 1, y: 2}
   m_AngularOffset: 0
@@ -1685,7 +1695,7 @@ RelativeJoint2D:
   m_BreakAction: 0
   m_MaxForce: 100000
   m_MaxTorque: 100000
-  m_CorrectionScale: 1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: 0, y: 2}
   m_AngularOffset: 0
@@ -1923,10 +1933,10 @@ HingeJoint2D:
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_AngleLimits:
     m_LowerAngle: 0
-    m_UpperAngle: 359
+    m_UpperAngle: 180
 --- !u!50 &5328214466413161391 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8291247646464031754, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
@@ -2065,7 +2075,7 @@ RelativeJoint2D:
   m_BreakAction: 0
   m_MaxForce: 100000
   m_MaxTorque: 100000
-  m_CorrectionScale: 1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -1, y: 2}
   m_AngularOffset: 0
@@ -2213,15 +2223,15 @@ RelativeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 5328214466413161391}
+  m_ConnectedRigidBody: {fileID: 8724662413513046624}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 0
   m_MaxForce: 100000
   m_MaxTorque: 100000
-  m_CorrectionScale: 1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0, y: 2}
+  m_LinearOffset: {x: 0, y: 1}
   m_AngularOffset: 0
 --- !u!4 &7630577810940361196 stripped
 Transform:
@@ -2363,7 +2373,7 @@ RelativeJoint2D:
   m_BreakAction: 0
   m_MaxForce: 100000
   m_MaxTorque: 100000
-  m_CorrectionScale: 1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
   m_LinearOffset: {x: -1, y: 1}
   m_AngularOffset: 0
@@ -2385,7 +2395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 425312424550109757, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 964039076917499930, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
       propertyPath: m_LocalPosition.z
