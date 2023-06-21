@@ -44,6 +44,10 @@ public class AnimalQueue : MonoBehaviour
             return null;
 
         GameObject result = m_list[0];
+
+        if (Stage.GetInstance().IsBlocked(result, Level.GetInstance().GetEntryPoint()))
+            return null;
+
         m_list.RemoveAt(0);
         RefreshSprites();
         return result;

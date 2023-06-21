@@ -193,4 +193,76 @@ public class Stage : MonoBehaviour
         if (y < grid.GetLength(1) - 1) size += Visit(x, y + 1, visited, grid, animal);
         return size;
     }
+
+    public bool IsBlocked(GameObject prefab, Vector3 entryPoint)
+    {
+        int minX = int.MaxValue;
+        int maxX = int.MinValue;
+        int minY = int.MaxValue;
+        int maxY = int.MinValue;
+        BlockParent[] parents = GetComponentsInChildren<BlockParent>();
+        foreach (BlockParent parent in parents)
+        {
+            foreach (Transform container in parent.transform)
+            {
+                foreach (Transform t in container)
+                {
+                    Vector3 pos = t.position;
+                    minX = Math.Min(minX, Mathf.RoundToInt(pos.x));
+                    maxX = Math.Max(maxX, Mathf.RoundToInt(pos.x + 1));
+                    minY = Math.Min(minY, Mathf.RoundToInt(pos.y));
+                    maxY = Math.Max(maxY, Mathf.RoundToInt(pos.y + 1));
+                }
+            }
+        }
+        if (minX < int.MaxValue)
+        {
+            BlockParent[] newAnimal = prefab.GetComponentsInChildren<BlockParent>();
+            foreach (BlockParent parent in newAnimal)
+            {
+                foreach (Transform container in parent.transform)
+                {
+                    foreach (Transform t in container)
+                    {
+                        Vector3 pos = entryPoint + t.position;
+                        minX = Math.Min(minX, Mathf.RoundToInt(pos.x));
+                        maxX = Math.Max(maxX, Mathf.RoundToInt(pos.x + 1));
+                        minY = Math.Min(minY, Mathf.RoundToInt(pos.y));
+                        maxY = Math.Max(maxY, Mathf.RoundToInt(pos.y + 1));
+                    }
+                }
+            }
+            bool[,] blocked = new bool[maxX - minX, maxY - minY];
+            foreach (BlockParent parent in parents)
+            {
+                foreach (Transform container in parent.transform)
+                {
+                    foreach (Transform t in container)
+                    {
+                        Vector3 pos = t.position;
+                        int x = Mathf.RoundToInt(pos.x) - minX;
+                        int y = Mathf.RoundToInt(pos.y) - minY;
+                        blocked[x, y] = true;
+                    }
+                }
+            }
+            foreach (BlockParent parent in newAnimal)
+            {
+                foreach (Transform container in parent.transform)
+                {
+                    foreach (Transform t in container)
+                    {
+                        Vector3 pos = entryPoint + t.position;
+                        int x = Mathf.RoundToInt(pos.x) - minX;
+                        int y = Mathf.RoundToInt(pos.y) - minY;
+                        if (blocked[x, y])
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }
