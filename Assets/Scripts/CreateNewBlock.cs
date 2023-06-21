@@ -5,7 +5,6 @@ using UnityEngine;
 public class CreateNewBlock : MonoBehaviour
 {
     public Transform m_objectsParent;
-    public GameObject[] m_blockPrefab;
 
     private Vector2 m_touchPosition;
 
@@ -27,8 +26,13 @@ public class CreateNewBlock : MonoBehaviour
         if (prefab == null)
             return;
 
-        GameObject go = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity, m_objectsParent);
+        GameObject go = Instantiate(prefab, GetEntryPoint(), Quaternion.identity, m_objectsParent);
         ApplyRigidbodySettings(go);
+    }
+
+    Vector3 GetEntryPoint()
+    {
+        return Level.GetInstance().GetEntryPoint();
     }
 
     void ApplyRigidbodySettings(GameObject go)
@@ -37,15 +41,15 @@ public class CreateNewBlock : MonoBehaviour
         foreach (Rigidbody2D p in rigidBodies)
         {
             p.interpolation = RigidbodyInterpolation2D.Interpolate;
-            p.drag = 100;
-            p.angularDrag = 100;
+            p.drag = 10;
+            p.angularDrag = 10;
         }
 
         FrictionJoint2D[] frictionJoints = GetComponentsInChildren<FrictionJoint2D>();
         foreach (FrictionJoint2D p in frictionJoints)
         {
-            p.maxForce = 1000;
-            p.maxTorque = 1000;
+            p.maxForce = Stage.GetInstance().FMaxForce;
+            p.maxTorque = Stage.GetInstance().FMaxTorque;
         }
 
     }

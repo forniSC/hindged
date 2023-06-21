@@ -7,7 +7,7 @@ public class Converger : MonoBehaviour
 {
     float PositionTime = 0.05f;
     float AngleTime = 0.05f;
-    float Iterations = 3;
+    float Iterations = 4;
     float m_totalTime;
 
     Vector2 m_targetPos;
@@ -18,10 +18,12 @@ public class Converger : MonoBehaviour
     bool m_isConverging = false;
     bool m_wasAngle = false;
     bool m_wasConverging = false;
+    bool m_isFailed = false;
 
     public Vector2 TargetPos { get { return m_targetPos; } }
     public float TargetAngle { get { return m_targetAngle; } }
     public bool IsConverging { get { return m_isConverging; } }
+    public bool IsFailed { get { return m_isFailed; } }
 
     // Start is called before the first frame update
     void Start()
@@ -80,8 +82,12 @@ public class Converger : MonoBehaviour
         if (!m_isConverging && m_wasConverging)
         {
             Vector2 rigidBodyPosition = GetComponent<Rigidbody2D>().position;
-            m_targetPos.x = Mathf.Round(rigidBodyPosition.x);
-            m_targetPos.y = Mathf.Round(rigidBodyPosition.y);
+            float rigidBodyRotation = GetComponent<Rigidbody2D>().rotation;
+
+            float distanceRemain = Vector2.Distance(rigidBodyPosition, m_targetPos);
+            float angleRemain = Mathf.DeltaAngle(rigidBodyRotation, m_targetAngle);
+
+            m_isFailed = distanceRemain > 0.1f || angleRemain > 5;
         }
 
         m_time += Time.fixedDeltaTime;
@@ -90,6 +96,8 @@ public class Converger : MonoBehaviour
 
     public void Converge()
     {
+        GetComponent<FrictionJoint2D>().enabled = false;
+
         m_startAngle = transform.eulerAngles.z;
 
         if (m_targetAngle < 0) m_startAngle += 360.0f;

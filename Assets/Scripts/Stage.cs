@@ -9,6 +9,12 @@ public class Stage : MonoBehaviour
 
     Converger[] m_waitingConvergers = new Converger[0];
     BlockParent m_waitingBlockParent = null;
+    int m_coziness = 0;
+
+    public float FMaxForce = 50.0f;
+    public float FMaxTorque = 10.0f;
+
+    public int Coziness { get { return m_coziness; } }
 
     // Start is called before the first frame update
     void Start()
@@ -22,18 +28,23 @@ public class Stage : MonoBehaviour
         if (m_waitingConvergers.Length > 0)
         {
             bool isWaiting = false;
+            bool isFailed = false;
             foreach (Converger c in m_waitingConvergers)
             {
                 isWaiting |= c.IsConverging;
+                isFailed |= c.IsFailed;
             }
             if (!isWaiting)
             {
-                // Fix the intepolation
-                foreach (Converger c in m_waitingConvergers)
+                if (!isFailed)
                 {
-                    c.gameObject.transform.SetPositionAndRotation(c.TargetPos, Quaternion.Euler(0, 0, c.TargetAngle));
+                    // Fix the intepolation
+                    foreach (Converger c in m_waitingConvergers)
+                    {
+                        c.gameObject.transform.SetPositionAndRotation(c.TargetPos, Quaternion.Euler(0, 0, c.TargetAngle));
+                    }
+                    m_waitingBlockParent.GetComponent<ChangeStatic>().setStatic(true);
                 }
-                m_waitingBlockParent.GetComponent<ChangeStatic>().setStatic(true);
 
                 m_waitingConvergers = new Converger[0];
                 m_waitingBlockParent = null;
@@ -61,6 +72,8 @@ public class Stage : MonoBehaviour
 
     public bool RecalculateInteractions()
     {
+        int coziness = 0;
+
         int minX = int.MaxValue;
         int maxX = int.MinValue;
         int minY = int.MaxValue;
@@ -133,6 +146,7 @@ public class Stage : MonoBehaviour
                         Debug.Log("Animal is split to pieces!");
                         return false;
                     }
+                    coziness += count; // TODO: Non-linear formula.
                 }
             }
             /*for (int j = maxY - minY - 1; j >= 0; --j)
@@ -152,6 +166,7 @@ public class Stage : MonoBehaviour
                 Debug.Log(s);
             }*/
         }
+        m_coziness = coziness;
         return true;
     }
 
@@ -159,12 +174,23 @@ public class Stage : MonoBehaviour
     {
         if (visited[x, y]) return 0;
 
-        int size = 1;
         visited[x, y] = true;
-        if (x > 0 && grid[x - 1, y] == animal) size += Visit(x - 1, y, visited, grid, animal);
-        if (y > 0 && grid[x, y - 1] == animal) size += Visit(x, y - 1, visited, grid, animal);
-        if (x < grid.GetLength(0) - 1 && grid[x + 1, y] == animal) size += Visit(x + 1, y, visited, grid, animal);
-        if (y < grid.GetLength(1) - 1 && grid[x, y + 1] == animal) size += Visit(x, y + 1, visited, grid, animal);
+
+        BlockParent neighbor = grid[x, y];
+        if (neighbor != animal)
+        {
+            if (neighbor != null)
+            {
+                // Decrease coziness
+            }
+            return 0;
+        }
+
+        int size = 1;
+        if (x > 0) size += Visit(x - 1, y, visited, grid, animal);
+        if (y > 0) size += Visit(x, y - 1, visited, grid, animal);
+        if (x < grid.GetLength(0) - 1) size += Visit(x + 1, y, visited, grid, animal);
+        if (y < grid.GetLength(1) - 1) size += Visit(x, y + 1, visited, grid, animal);
         return size;
     }
 }
