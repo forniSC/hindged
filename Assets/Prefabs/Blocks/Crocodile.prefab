@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7155296435721815117}
   - component: {fileID: 8657634770007257946}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4295524616110487115}
   - component: {fileID: 895281290064151194}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SubblockContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8221677594832769017}
   - component: {fileID: 2304019296783114000}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SubblockContainer (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 720654811663478835}
   - component: {fileID: 8035829200501975794}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,6 +365,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubBlockSquare
       objectReference: {fileID: 0}
+    - target: {fileID: 294418734566673753, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3792091460235097076, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -408,6 +412,10 @@ PrefabInstance:
     - target: {fileID: 3792091460235097076, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934856152654538416, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6548589997171519820, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       propertyPath: m_LocalScale.y
@@ -484,19 +492,24 @@ RelativeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 8058015094229475895}
+  m_ConnectedRigidBody: {fileID: 5328214466413161391}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 0
   m_MaxForce: 100000
   m_MaxTorque: 100000
-  m_CorrectionScale: 1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: -0.0000000754979, y: -1}
+  m_LinearOffset: {x: 0.000000075497894, y: 1.0000001}
   m_AngularOffset: 0
 --- !u!4 &4513839259537864094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3792091460235097076, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
+  m_PrefabInstance: {fileID: 721798543067416170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &8724662413513046624 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8291247646464031754, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
   m_PrefabInstance: {fileID: 721798543067416170}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2072711114101136957
@@ -514,6 +527,10 @@ PrefabInstance:
     - target: {fileID: 294418734566673753, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       propertyPath: m_Name
       value: SubBlockSquare (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 294418734566673753, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3792091460235097076, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       propertyPath: m_RootOrder
@@ -558,6 +575,10 @@ PrefabInstance:
     - target: {fileID: 3792091460235097076, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934856152654538416, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6548589997171519820, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       propertyPath: m_LocalScale.y
@@ -642,24 +663,19 @@ RelativeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 5328214466413161391}
+  m_ConnectedRigidBody: {fileID: 8724662413513046624}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 0
   m_MaxForce: 100000
   m_MaxTorque: 100000
-  m_CorrectionScale: 1
+  m_CorrectionScale: 0.3
   m_AutoConfigureOffset: 1
-  m_LinearOffset: {x: 0.0000001509958, y: 2}
+  m_LinearOffset: {x: 0.0000000754979, y: 1}
   m_AngularOffset: 0
 --- !u!4 &2910320218479422921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3792091460235097076, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
-  m_PrefabInstance: {fileID: 2072711114101136957}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &8058015094229475895 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 8291247646464031754, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
   m_PrefabInstance: {fileID: 2072711114101136957}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3709028978892147784
@@ -673,6 +689,10 @@ PrefabInstance:
     - target: {fileID: 294418734566673753, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       propertyPath: m_Name
       value: SubBlockSquare
+      objectReference: {fileID: 0}
+    - target: {fileID: 294418734566673753, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3792091460235097076, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       propertyPath: m_RootOrder
@@ -717,6 +737,10 @@ PrefabInstance:
     - target: {fileID: 3792091460235097076, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934856152654538416, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6548589997171519820, guid: 1731d122afd8d4e1eb11b5a5a65f8103, type: 3}
       propertyPath: m_LocalRotation.w
@@ -812,6 +836,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubBlockSemicircle
       objectReference: {fileID: 0}
+    - target: {fileID: 294418734566673753, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1347828269150765688, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -827,6 +855,10 @@ PrefabInstance:
     - target: {fileID: 1347828269150765688, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3602063761442948090, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3602063761442948090, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
       propertyPath: m_IsActive
@@ -913,6 +945,10 @@ PrefabInstance:
       value: 0.9999999
       objectReference: {fileID: 0}
     - target: {fileID: 9139121986116713031, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139121986116713031, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -946,6 +982,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubBlockSemicircle (Hinge)
       objectReference: {fileID: 0}
+    - target: {fileID: 294418734566673753, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 425312424550109757, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -965,6 +1005,10 @@ PrefabInstance:
     - target: {fileID: 1347828269150765688, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3602063761442948090, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3602063761442948090, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
       propertyPath: m_IsActive
@@ -1045,6 +1089,10 @@ PrefabInstance:
     - target: {fileID: 7659615097721310039, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139121986116713031, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9139121986116713031, guid: e2472d5da9e0946d0b63a6d6e5cca285, type: 3}
       propertyPath: m_IsActive
