@@ -161,7 +161,8 @@ public class PanAndZoom : MonoBehaviour {
                 case TouchPhase.Canceled:
                     break;
             }
-        } else*/ if (touchCount == 2) {
+        } else*/
+        if (touchCount == 2) {
             Touch touch0 = Input.touches[0];
             Touch touch1 = Input.touches[1];
 
@@ -175,6 +176,54 @@ public class PanAndZoom : MonoBehaviour {
 
             if (previousDistance != currentDistance) {
                 OnPinch((touch0.position + touch1.position) / 2, previousDistance, currentDistance, (touch1.position - touch0.position).normalized);
+            }
+
+            Touch touch = Input.touches[0];
+
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    {
+                        if (ignoreUI || !IsPointerOverUIObject())
+                        {
+                            touch0StartPosition = touch.position;
+                            touch0StartTime = Time.time;
+                            touch0LastPosition = touch0StartPosition;
+
+                            isTouching = true;
+
+                            if (onStartTouch != null) onStartTouch(touch0StartPosition);
+                        }
+
+                        break;
+                    }
+                case TouchPhase.Moved:
+                    {
+                        touch0LastPosition = touch.position;
+
+                        if (touch.deltaPosition != Vector2.zero && isTouching)
+                        {
+                            OnSwipe(touch.deltaPosition);
+                        }
+                        break;
+                    }
+                case TouchPhase.Ended:
+                    {
+                        if (Time.time - touch0StartTime <= maxDurationForTap
+                            && Vector2.Distance(touch.position, touch0StartPosition) <= maxDistanceForTap
+                            && isTouching)
+                        {
+                            OnClick(touch.position);
+                        }
+
+                        if (onEndTouch != null) onEndTouch(touch.position);
+                        isTouching = false;
+                        cameraControlEnabled = true;
+                        break;
+                    }
+                case TouchPhase.Stationary:
+                case TouchPhase.Canceled:
+                    break;
             }
         } else {
             if (isTouching) {

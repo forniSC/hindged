@@ -21,7 +21,7 @@ public class DragWithTouchOrClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
             m_touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
@@ -39,7 +39,7 @@ public class DragWithTouchOrClick : MonoBehaviour
             return;
         }
 
-        if (Input.touchCount > 0)
+        if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
