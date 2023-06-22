@@ -87,7 +87,7 @@ public class Converger : MonoBehaviour
             float distanceRemain = Vector2.Distance(rigidBodyPosition, m_targetPos);
             float angleRemain = Mathf.DeltaAngle(rigidBodyRotation, m_targetAngle);
 
-            m_isFailed = distanceRemain > 0.1f || angleRemain > 5;
+            m_isFailed = distanceRemain > 0.15f || angleRemain > 8;
         }
 
         m_time += Time.fixedDeltaTime;
